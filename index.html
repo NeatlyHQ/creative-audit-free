@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en-US" data-theme="onyx">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Creative Audit — Assess Your Creative Productivity | CreatorForge by Neatly</title>
+<meta name="description" content="Answer 5 questions about your creative work. Get a personalized audit with scores across Writing, Business, Discipline, and Progress. Free tool for creators.">
+<style>
+:root{--bg:#060608;--surface:#14141c;--text:#e8e6e3;--text2:#98968e;--text3:#585650;--accent:#d4a853;--green:#6b9e7a;--amber:#d4a853;--red:#c4756e;--font-display:'Cormorant Garamond',Georgia,serif;--font-body:'Inter',-apple-system,sans-serif;--ease-out:cubic-bezier(0.23,1,0.32,1)}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);min-height:100vh}
+.container{max-width:600px;margin:0 auto;padding:40px 20px}
+.header{text-align:center;margin-bottom:24px}
+.header .badge{display:inline-block;padding:6px 14px;background:rgba(212,168,83,0.08);color:var(--accent);border-radius:20px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;margin-bottom:10px}
+.header h1{font-family:var(--font-display);font-size:28px;font-weight:700;font-style:italic;color:var(--accent);margin-bottom:4px}
+.header p{color:var(--text2);font-size:13px;font-family:var(--font-display);font-style:italic}
+.pwyw{background:var(--surface);border:1px solid #26242a;border-radius:12px;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:16px}
+.pwyw .price{font-size:22px;font-weight:800;color:var(--green)}
+.card{background:var(--surface);border:1px solid #26242a;border-radius:14px;padding:20px;margin-bottom:12px}
+.card-title{font-family:var(--font-display);font-size:17px;font-weight:500;font-style:italic;margin-bottom:10px;color:var(--accent)}
+.quiz-question{margin-bottom:14px}
+.quiz-question .q-text{font-size:13px;margin-bottom:6px;font-weight:500}
+.quiz-options{display:flex;gap:6px;flex-wrap:wrap}
+.quiz-opt{padding:8px 14px;background:#1c1c26;border:2px solid transparent;border-radius:8px;cursor:pointer;font-size:11px;transition:all 0.15s;color:var(--text2)}
+.quiz-opt:hover{border-color:var(--accent);color:var(--text)}
+.quiz-opt.selected{background:rgba(212,168,83,0.08);border-color:var(--accent);color:var(--accent);font-weight:600}
+.quiz-opt:active{transform:scale(0.96)}
+.audit-results{display:none;margin-top:12px}
+.audit-results.show{display:block}
+.score-bar{margin:8px 0}
+.score-bar .bar-label{display:flex;justify-content:space-between;font-size:10px;margin-bottom:3px}
+.score-bar .bar{height:6px;background:#1c1c26;border-radius:3px;overflow:hidden}
+.score-bar .bar-fill{height:100%;border-radius:3px;transition:width 0.5s var(--ease-out)}
+.overall-score{text-align:center;padding:18px;margin:12px 0;border-radius:12px}
+.overall-score .big{font-family:var(--font-display);font-size:44px;font-weight:700;font-style:italic}
+.recommendations{font-size:10px;line-height:1.8;color:var(--text2)}
+.recommendations .rec{padding:3px 0;display:flex;align-items:flex-start;gap:5px}
+.cta{background:linear-gradient(135deg,rgba(212,168,83,0.06),rgba(212,168,83,0.02));border:1px solid rgba(212,168,83,0.2);border-radius:14px;padding:22px;text-align:center;margin-top:20px}
+.cta h3{font-family:var(--font-display);font-size:18px;font-style:italic;color:var(--accent)}
+.cta .features{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;margin:8px 0}
+.cta .ftag{padding:4px 8px;background:rgba(212,168,83,0.05);border-radius:20px;font-size:9px;color:var(--text2)}
+.btn{display:inline-block;padding:10px 20px;background:var(--accent);color:#060608;border-radius:8px;font-weight:700;font-size:12px;cursor:pointer;border:none;text-decoration:none;font-family:var(--font-body);transition:all 0.15s;width:100%;text-align:center}
+.btn:hover{background:#e0b95f;transform:translateY(-1px)}
+.btn:active{transform:scale(0.97)}
+.footer{text-align:center;margin-top:32px;font-size:9px;color:var(--text3)}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header"><div class="badge">🆓 100% Free Tool</div><h1>Creative Audit</h1><p>5 questions. 2 minutes. Discover your creative strengths and gaps.</p></div>
+  
+
+  <div class="card"><div class="card-title">Answer 5 Questions</div>
+    <div class="quiz-question"><div class="q-text">1. How many creative projects are you actively working on?</div><div class="quiz-options" id="q1"><div class="quiz-opt" onclick="selectOpt(this,'q1',5)">0-1</div><div class="quiz-opt" onclick="selectOpt(this,'q1',15)">2-3</div><div class="quiz-opt" onclick="selectOpt(this,'q1',25)">4-5</div><div class="quiz-opt" onclick="selectOpt(this,'q1',10)">6+</div></div></div>
+    <div class="quiz-question"><div class="q-text">2. How consistently do you track your word count or writing progress?</div><div class="quiz-options" id="q2"><div class="quiz-opt" onclick="selectOpt(this,'q2',5)">Never</div><div class="quiz-opt" onclick="selectOpt(this,'q2',15)">Sometimes</div><div class="quiz-opt" onclick="selectOpt(this,'q2',25)">Weekly</div><div class="quiz-opt" onclick="selectOpt(this,'q2',10)">Daily</div></div></div>
+    <div class="quiz-question"><div class="q-text">3. Do you track your creative income and expenses?</div><div class="quiz-options" id="q3"><div class="quiz-opt" onclick="selectOpt(this,'q3',5)">Not at all</div><div class="quiz-opt" onclick="selectOpt(this,'q3',15)">Roughly</div><div class="quiz-opt" onclick="selectOpt(this,'q3',25)">Monthly</div><div class="quiz-opt" onclick="selectOpt(this,'q3',10)">Every transaction</div></div></div>
+    <div class="quiz-question"><div class="q-text">4. How organized is your submission/publishing process?</div><div class="quiz-options" id="q4"><div class="quiz-opt" onclick="selectOpt(this,'q4',5)">No system</div><div class="quiz-opt" onclick="selectOpt(this,'q4',15)">Scattered notes</div><div class="quiz-opt" onclick="selectOpt(this,'q4',25)">Spreadsheet</div><div class="quiz-opt" onclick="selectOpt(this,'q4',10)">Fully tracked</div></div></div>
+    <div class="quiz-question"><div class="q-text">5. Do you have clear deadlines and goals for your creative work?</div><div class="quiz-options" id="q5"><div class="quiz-opt" onclick="selectOpt(this,'q5',5)">None</div><div class="quiz-opt" onclick="selectOpt(this,'q5',15)">Vague ideas</div><div class="quiz-opt" onclick="selectOpt(this,'q5',25)">Some deadlines</div><div class="quiz-opt" onclick="selectOpt(this,'q5',10)">Clear goals</div></div></div>
+    <button class="btn" onclick="runAudit()">🔍 Run My Audit</button>
+  </div>
+
+  <div class="audit-results" id="auditResults"></div>
+
+  <div class="cta"><div style="font-size:24px;">⚒️</div><h3>Want to Fix These Gaps?</h3><p>This audit identifies problems. CreatorForge SOLVES them with 8 unified modules.</p>
+    <div class="features"><span class="ftag">📊 Command Center</span><span class="ftag">✍️ Universal Writer</span><span class="ftag">🏗️ Studio</span><span class="ftag">📋 Pipeline</span><span class="ftag">💰 Finance</span><span class="ftag">📈 Publishing</span><span class="ftag">🎯 Goals</span></div>
+    <a href="https://neatlyhq.github.io/creatorforge-os/" class="btn" target="_blank">⚒️ Get CreatorForge — $197</a>
+    <p style="font-size:9px;color:var(--text3);margin-top:4px;">8 unified modules · One-time · Works offline</p>
+  </div>
+  <div class="footer">© CreatorForge by Neatly · For creators.</div>
+</div>
+<script>
+var MAX_PER_QUESTION=25, NUM_QUESTIONS=5, MAX_TOTAL=MAX_PER_QUESTION*NUM_QUESTIONS;
+var MAX_PER_DIM=MAX_PER_QUESTION*2, THRESH_GREEN=75, THRESH_AMBER=45;
+var REC_THRESHOLD=MAX_PER_QUESTION*0.5;
+var QUESTION_IDS=['q1','q2','q3','q4','q5'];
+var scores={q1:0,q2:0,q3:0,q4:0,q5:0};
+var answered={q1:false,q2:false,q3:false,q4:false,q5:false};
+function clampPct(v){return Math.max(0,Math.min(100,Math.round(v)));}
+function selectOpt(el,question,points){
+  if(!(question in scores))return;
+  document.querySelectorAll('#'+question+' .quiz-opt').forEach(function(o){o.classList.remove('selected');});
+  el.classList.add('selected');
+  var n=Number(points);
+  var valid=isFinite(n)&&n>=0;
+  scores[question]=valid?Math.min(n,MAX_PER_QUESTION):0;
+  answered[question]=valid;
+  if(!valid)el.classList.remove('selected');
+}
+function runAudit(){
+  var resultsEl=document.getElementById('auditResults');
+  if(!resultsEl){if(window.console)console.error('runAudit: #auditResults introuvable');return;}
+  var missing=QUESTION_IDS.filter(function(q){return !answered[q];});
+  if(missing.length>0){
+    resultsEl.innerHTML='<div class="rec">⚠️ Veuillez répondre aux '+NUM_QUESTIONS+' questions avant de lancer l\'audit ('+missing.length+' restante(s)).</div>';
+    resultsEl.classList.add('show');
+    return;
+  }
+  var writingScore=clampPct(((scores.q1+scores.q2)/MAX_PER_DIM)*100);
+  var businessScore=clampPct(((scores.q3+scores.q4)/MAX_PER_DIM)*100);
+  var disciplineScore=clampPct(((scores.q2+scores.q5)/MAX_PER_DIM)*100);
+  var progressScore=clampPct(((scores.q1+scores.q5)/MAX_PER_DIM)*100);
+  var total=scores.q1+scores.q2+scores.q3+scores.q4+scores.q5;
+  var pct=clampPct((total/MAX_TOTAL)*100);
+  var cls=pct>=THRESH_GREEN?'green':pct>=THRESH_AMBER?'amber':'red';
+  var recs=[];
+  if(scores.q1<REC_THRESHOLD)recs.push({text:'Your answers suggest project tracking is a weak point. The Universal Writer module organizes ALL your projects in one place.'});
+  if(scores.q2<REC_THRESHOLD)recs.push({text:'Your answers suggest inconsistent progress tracking. The Command Center shows your word counts and streaks automatically.'});
+  if(scores.q3<REC_THRESHOLD)recs.push({text:'Your answers suggest creative finances are a weak point. The Creative Finance module handles income, expenses, and royalties.'});
+  if(scores.q4<REC_THRESHOLD)recs.push({text:'Your answers suggest submissions could be better organized. The Goals & Submissions module tracks every agent and publisher.'});
+  if(scores.q5<REC_THRESHOLD)recs.push({text:'Your answers suggest deadlines are a pain point. The Project Pipeline gives you a 5-phase workflow with dates.'});
+  if(recs.length===0)recs.push({text:'You\'re doing well! CreatorForge can help you scale even further with advanced tools.'});
+  var html='<div class="overall-score" style="background:rgba('+(cls==='green'?'107,158,122':cls==='amber'?'212,168,83':'196,117,110')+',0.06);border:1px solid var(--'+cls+');"><div class="big" style="color:var(--'+cls+');">'+pct+'%</div><div style="font-size:10px;color:var(--text2);">Creative Productivity Score</div></div>';
+  html+='<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:8px 0;">';
+  [{label:'Writing',val:writingScore},{label:'Business',val:businessScore},{label:'Discipline',val:disciplineScore},{label:'Progress',val:progressScore}].forEach(function(s){var c=s.val>=THRESH_GREEN?'green':s.val>=THRESH_AMBER?'amber':'red';html+='<div class="score-bar"><div class="bar-label"><span>'+s.label+'</span><span style="color:var(--'+c+');">'+s.val+'%</span></div><div class="bar"><div class="bar-fill" style="width:'+s.val+'%;background:var(--'+c+');"></div></div></div>';});
+  html+='</div><div class="recommendations">'+recs.map(function(r){return '<div class="rec">💡 '+r.text+'</div>';}).join('')+'</div>';
+  resultsEl.innerHTML=html;resultsEl.classList.add('show');
+}
+</script>
+</body>
+</html>
